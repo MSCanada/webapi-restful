@@ -1,0 +1,2 @@
+if in maven build error then
+properties of project and change jre settings

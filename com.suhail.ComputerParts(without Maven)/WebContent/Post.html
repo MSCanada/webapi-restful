@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form>
+		Company Name:<br> <input type="text" name="firstname" id="company_name">
+		<br> Address:<br> <input type="text" name="lastname"id="address">
+		<br> City:<br> <input type="text" name="lastname1"id="city">
+		<br> State:<br> <input type="text" name="lastname2"id="state">
+		<br> Postal:<br> <input type="text" name="lastname3"id="postal">
+		<br> Country:<br> <input type="text" name="lastname4"id="country">
+		<br> Phone:<br> <input type="text" name="lastname5"id="phone">
+		<br> Url:<br> <input type="text" name="lastname6"id="url">
+		<br> Notes:<br> <input type="text" name="lastname7"id="notes">
+		<br> Status:<br> <input type="text" name="lastname8"id="status">
+		<br> Colour:<br> <input type="text" name="lastname9"id="colour">
+		
+		<br> <br>
+		<button type="button" onclick=loadXMLDoc()>click</button>
+	</form>
+	
+	<div id="answer"></div>
+	
+</body>
+<script>
+
+function loadXMLDoc()
+{
+	var object={company_name:"",address:"",city:"",state:"",postal:"",country:"",phone:"",url:"",notes:"",status:"",
+	colour:""};
+	object.address=document.getElementById("address").value;
+	object.city=document.getElementById("city").value;
+	object.state=document.getElementById("state").value;
+	object.postal=document.getElementById("postal").value;
+	object.company_name=document.getElementById("company_name").value;
+	object.country=document.getElementById("country").value;
+	object.phone=document.getElementById("phone").value;
+	object.url=document.getElementById("url").value;
+	object.notes=document.getElementById("notes").value;
+	object.status=document.getElementById("status").value;
+	object.colour=document.getElementById("colour").value;
+	var input=JSON.stringify(object);
+	
+
+	
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("answer").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("POST","http://localhost:8080/com.suhail.ComputerParts/api/V1?name="+input,true);
+//xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send();
+console.log(input);
+
+}
+
+
+</script>
+
+
+</html>
